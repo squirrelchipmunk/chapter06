@@ -1,4 +1,4 @@
-package echo.ex01;
+package echo.ex02;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -34,15 +34,28 @@ public class Client {
 		InputStreamReader isr = new InputStreamReader(is, "UTF-8");
 		BufferedReader br = new BufferedReader(isr);
 		
-		//메세지 쓰기
-		bw.write("안녕하세요");
-		bw.newLine();
-		bw.flush();
+		// 키보드 입력용
+		Scanner sc = new Scanner(System.in);
 		
-		//메세지 받기
-		String reMsg = br.readLine();
-		System.out.println("server: ["+reMsg+"]");
 		
+		while(true) {
+			//메세지 보내기
+			String str = sc.nextLine();
+			if("/q".equals(str)) { // 널포인터 예외 방지
+				break;
+			}
+			bw.write(str);
+			bw.newLine();
+			bw.flush();
+
+			//메세지 받기
+			String reMsg = br.readLine();
+			System.out.println("server: ["+reMsg+"]");
+		}
+		
+		System.out.println("============================");
+		System.out.println("<클라이언트 종료>");
+		sc.close();
 		br.close();
 		bw.close();
 		socket.close();
