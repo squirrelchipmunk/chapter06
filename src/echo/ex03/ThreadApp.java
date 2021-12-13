@@ -7,7 +7,7 @@ public class ThreadApp {
 		Thread thread = new DigitThread();
 		thread.start();
 		
-		for(char ch='a'; ch <='z'; ch++) {
+		for(char ch='A'; ch <='Z'; ch++) {
 			System.out.println(ch);
 			Thread.sleep(1000);
 		}
